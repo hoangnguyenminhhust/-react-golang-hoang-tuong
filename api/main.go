@@ -27,6 +27,8 @@ type News struct {
 }
 
 func createNews(response http.ResponseWriter, request *http.Request) {
+	response.Header().Set("Access-Control-Allow-Origin", "*")
+
 	response.Header().Set("content-type", "application/json")
 	var news News
 	json.NewDecoder(request.Body).Decode(&news)
@@ -41,6 +43,8 @@ func createNews(response http.ResponseWriter, request *http.Request) {
 }
 
 func getNewByID(response http.ResponseWriter, request *http.Request) {
+	response.Header().Set("Access-Control-Allow-Origin", "*")
+
 	response.Header().Set("content-type", "application/json")
 	var news News
 	id, _ := primitive.ObjectIDFromHex(mux.Vars(request)["id"])
@@ -56,6 +60,8 @@ func getNewByID(response http.ResponseWriter, request *http.Request) {
 }
 
 func getListNews(response http.ResponseWriter, request *http.Request) {
+	response.Header().Set("Access-Control-Allow-Origin", "*")
+
 	response.Header().Set("content-type", "application/json")
 	var ListNews []News
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
@@ -81,6 +87,7 @@ func getListNews(response http.ResponseWriter, request *http.Request) {
 }
 
 func updateNews(response http.ResponseWriter, request *http.Request) {
+	response.Header().Set("Access-Control-Allow-Origin", "*")
 	response.Header().Set("content-type", "application/json")
 	var news News
 	id, _ := primitive.ObjectIDFromHex(mux.Vars(request)["id"])
@@ -98,6 +105,8 @@ func updateNews(response http.ResponseWriter, request *http.Request) {
 }
 
 func deleteNews(response http.ResponseWriter, request *http.Request) {
+	response.Header().Set("Access-Control-Allow-Origin", "*")
+
 	response.Header().Set("content-type", "application/json")
 	id, _ := primitive.ObjectIDFromHex(mux.Vars(request)["id"])
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
